@@ -21,7 +21,6 @@ gameBoard.addEventListener('click', (event) => {
     }
     event.stopPropagation();
     if (UserO) {
-        currUser.innerText = 'User X Turn';
         currUser.classList.add('x');
         currUser.classList.remove('o');
         select(event);
@@ -30,7 +29,6 @@ gameBoard.addEventListener('click', (event) => {
         }, 1000);
     }
     else {
-        currUser.innerText = 'User O Turn';
         currUser.classList.add('o');
         currUser.classList.remove('x');
         select(event);
@@ -40,10 +38,18 @@ gameBoard.addEventListener('click', (event) => {
         alert("winner is " + winner);
         result.innerText = `Player ${winner} is Winner`;
         currUser.innerText = `User ${winner} wins`;
+        if(winner === 'O'){
+            result.classList.add('o');
+        }
+        else{
+            result.classList.add('x');
+        }
         return 0;
     }
     else if (winnings.includes('')) {
-        alert("Math is draw");
+        // alert("Match is draw");
+        result.innerText = "Match is Draw";
+        currUser.innerText = "Match is Draw";
         return 0;
     }
 
@@ -65,7 +71,7 @@ function select(event) {
     event.target.classList.add(UserO ? 'o' : 'x');
     event.target.innerText = UserO ? 'O' : 'X';
     UserO = UserO ? false : true;
-    currUser.innerText = UserO ? 'User O Turn' : 'User X Turn';
+    currUser.innerText = UserO ? 'User O Turn' : 'Computer X Turn';
     event.target.disabled = true;
 }
 function calculate() {
@@ -94,4 +100,5 @@ reset.addEventListener('click', () => {
     UserO = true;
     currUser.innerText = "User O Turn";
     currUser.classList.remove('x', 'o');
+    result.classList.remove('x', 'o');
 });
