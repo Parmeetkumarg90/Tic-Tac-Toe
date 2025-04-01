@@ -98,6 +98,7 @@ reset.addEventListener('click', () => {
         but.disabled = false;
     });
     UserO = true;
+    result.innerText = `Let's See Who Wins?`;
     currUser.innerText = "User O Turn";
     currUser.classList.remove('x', 'o');
     result.classList.remove('x', 'o');
